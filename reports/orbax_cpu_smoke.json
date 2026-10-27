@@ -1,0 +1,7 @@
+{
+  "official_orbax_metadata": "passed",
+  "cpu_time_mlp_restore": "passed",
+  "bf16_equality_to_prepared_checkpoint": "exact",
+  "gpu_used": false,
+  "full_model_conversion_executed": false
+}

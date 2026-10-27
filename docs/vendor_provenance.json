@@ -1,0 +1,18 @@
+{
+  "models/gemma/configuration_gemma.py": {
+    "source_sha256": "26fd0d0f52730ab32b6f337eb73ae9a26cb71ae0915bc49eced1d0e2ed8d0ec6",
+    "change": "Relative transformers imports made absolute; Gemma config remains package-local; trailing whitespace removed."
+  },
+  "models/gemma/modeling_gemma.py": {
+    "source_sha256": "17eeb54e277939e58cd6f8a92719a275e36baf0c9f463b2754227d42f87aedde",
+    "change": "Relative transformers imports made absolute; Gemma config remains package-local; trailing whitespace removed."
+  },
+  "models/siglip/modeling_siglip.py": {
+    "source_sha256": "ef2e99500f263fdd78db9d4d9a255e29d844eb92f53c25ad640f8056700ef84b",
+    "change": "Relative transformers imports made absolute; Gemma config remains package-local; trailing whitespace removed."
+  },
+  "examples/convert_jax_model_to_pytorch.py": {
+    "source_sha256": "62980fda1a1b1a09167d413232a2a9295db8370e52b58a70cfba52ef5d88c440",
+    "change": "Extracted two tensor-layout mapping functions; adaptive norm selected by pi05 boolean rather than directory name."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "samples": 30266,
+  "first_sample_shapes": {
+    "images": [
+      3,
+      3,
+      224,
+      224
+    ],
+    "tokens": [
+      64
+    ],
+    "token_mask": [
+      64
+    ],
+    "actions": [
+      8,
+      3
+    ]
+  },
+  "max_actual_prompt_tokens": 46,
+  "first_sample_images_read": 3,
+  "full_dataset_image_existence_check": false
+}

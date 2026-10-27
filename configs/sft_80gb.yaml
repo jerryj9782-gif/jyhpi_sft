@@ -1,0 +1,45 @@
+# Starting point, not a measured 80 GB optimum. Tune on your actual A100/H100.
+init_checkpoint: checkpoints/pi05_base
+model: {}
+data:
+  root: /data/open_datasets/navsim
+  train_manifest: assets/navsim/train.jsonl
+  val_manifest: assets/navsim/val.jsonl
+  stats: assets/navsim/norm_stats.json
+  tokenizer: assets/tokenizer/tokenizer.model
+  train_cache: null
+  val_cache: null
+train:
+  output: runs/navsim_full_sft
+  seed: 42
+  epochs: 8
+  vision_mode: staged
+  vision_freeze_epochs: 1
+  vision_lr: 0.000001
+  vision_warmup_steps: 50
+  projector_lr: 0.00001
+  expert_lr: 0.00001
+  micro_batch: 2
+  grad_accum: 4
+  lr: 0.00001
+  head_lr: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  min_lr_ratio: 0.1
+  grad_clip: 1.0
+  checkpointing: full
+  compile: false
+  workers: 4
+  prefetch_factor: 2
+  cpu_threads: 2
+  bucket_cap_mb: 25
+  save_checkpoints: true
+  save_every: 0
+  max_steps: null
+  validation: true
+  val_batch_size: 4
+  val_sample_steps: 10
+  val_max_samples: 0
+  early_stop_patience: 3
+  early_stop_min_delta: 0.001
+  min_epochs: 4

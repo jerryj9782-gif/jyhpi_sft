@@ -1,0 +1,8 @@
+{
+  "python_syntax": "passed",
+  "shell_syntax": "passed",
+  "all_cli_help": "passed",
+  "wheel_modules": "passed",
+  "asset_symlinks": 0,
+  "gpu_used": false
+}

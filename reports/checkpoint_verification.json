@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "3fca799bc5ba147e0085df1dc4189d2ad01ec447c553881e62e3d9cd955066cd",
+  "checkpoint_bytes": 7233650408,
+  "tokenizer_sha256": "8986bb4f423f07f8c7f70d0dbe3526fb2316056c17bae71b1ea975e77a168fc6",
+  "validation": {
+    "reinitialized": [
+      "action_in_proj.bias",
+      "action_in_proj.weight",
+      "action_out_proj.bias",
+      "action_out_proj.weight"
+    ],
+    "ignored": [
+      "action_in_proj.bias",
+      "action_in_proj.weight",
+      "action_out_proj.bias",
+      "action_out_proj.weight",
+      "paligemma_with_expert.gemma_expert.lm_head.weight"
+    ],
+    "loaded_tensors": 807,
+    "parameters": 3353374451
+  },
+  "source": "/home/jyh/.cache/openpi/pi05_base_pytorch",
+  "revision": null,
+  "original_base": "gs://openpi-assets/checkpoints/pi05_base",
+  "format": "OpenPI PyTorch conversion; new 3D head initialized at training startup"
+}

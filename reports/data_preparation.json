@@ -1,0 +1,26 @@
+{
+  "cameras": [
+    "cam_front_center",
+    "cam_front_left",
+    "cam_front_right"
+  ],
+  "horizon": 8,
+  "dt": 0.5,
+  "normalization": "train only",
+  "split": "custom recording-disjoint; not official leaderboard split",
+  "test_recordings_checked": 46,
+  "images_checked": false,
+  "provenance": {
+    "method": "import",
+    "source": "/home/jyh/project_jyh/openpi_old/assets/navsim_trainval"
+  },
+  "overlap": {
+    "tokens": 0,
+    "recordings": 0,
+    "images": 0
+  },
+  "samples": {
+    "train": 30266,
+    "val": 7569
+  }
+}

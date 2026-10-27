@@ -1,0 +1,7 @@
+# Copy into NAVSIM's agent config group, or instantiate with hydra directly.
+_target_: navpi.navsim_agent.NavPiAgent
+checkpoint: /absolute/path/to/runs/navsim_full_sft/step_00001000
+device: cuda
+steps: 10
+history_frames: 4
+seed: 42

@@ -1,0 +1,17 @@
+This project adapts the pi0.5 model architecture and tokenizer format from
+Physical Intelligence's OpenPI project and the user's local openpi_old snapshot.
+Upstream: https://github.com/Physical-Intelligence/openpi
+
+Vendored Gemma/SigLIP implementations originate from the OpenPI modifications
+to Hugging Face Transformers 4.53.2. Copyright and Apache-2.0 notices are retained
+in the individual files. Relative imports were adapted to package-local modules;
+the installed transformers distribution is not modified. The JAX tensor conversion functions are adapted from the OpenPI conversion example.
+Source file hashes are
+recorded in docs/vendor_provenance.json.
+
+The NAVSIM trajectory convention and optional agent interface follow
+https://github.com/autonomousvision/navsim .
+
+The base checkpoint derives from PaliGemma/Gemma and is subject to the Gemma
+Terms of Use in LICENSE_GEMMA.txt. The Apache-2.0 license for source code does
+not replace the model terms.

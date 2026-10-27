@@ -1,0 +1,10 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: openpi-navsim-sft
+  Building wheel for openpi-navsim-sft (pyproject.toml): started
+  Building wheel for openpi-navsim-sft (pyproject.toml): finished with status 'done'
+  Created wheel for openpi-navsim-sft: filename=openpi_navsim_sft-0.1.0-py3-none-any.whl size=56278 sha256=df205b29c18d6ec24e6cd4749d48926f13e3fb71bde2b21c72f2cb253e9230cb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p5o5g5hp/wheels/7c/01/02/13b7337e1b888a3fc2c874ee4619b5c89dd0b2b8b44982038c
+Successfully built openpi-navsim-sft
