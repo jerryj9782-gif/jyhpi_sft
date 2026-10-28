@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-28 Asia/Shanghai",
+  "epochs": 20,
+  "early_stopping_enabled": false,
+  "min_epochs": 20,
+  "max_steps": null,
+  "reference_train_samples": 30266,
+  "reference_world_size": 8,
+  "steps_per_epoch": 473,
+  "total_optimizer_steps": 9460,
+  "vision_unfreeze_step": 473,
+  "lr_schedule_bounds": "passed",
+  "gpu_used": false
+}

@@ -12,7 +12,7 @@ data:
 train:
   output: runs/navsim_full_sft
   seed: 42
-  epochs: 8
+  epochs: 20
   vision_mode: staged
   vision_freeze_epochs: 1
   vision_lr: 0.000001
@@ -40,6 +40,7 @@ train:
   val_batch_size: 4
   val_sample_steps: 10
   val_max_samples: 0
-  early_stop_patience: 3
+  # 0 disables early stopping: complete all 20 epochs unless max_steps is explicitly set.
+  early_stop_patience: 0
   early_stop_min_delta: 0.001
-  min_epochs: 4
+  min_epochs: 20

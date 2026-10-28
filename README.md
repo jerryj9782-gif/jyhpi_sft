@@ -2,9 +2,11 @@
 
 独立 PyTorch 项目，将 π0.5 的预训练动作专家适配到 NAVSIM。只输入 **F0 / L0 / R0 三路当前相机**，直接预测 **`[B, 8, 3]`**：未来 0.5～4.0 秒、相对当前自车坐标系的 `(x 米, y 米, heading 弧度)`。不使用 32 维机器人动作填充，不依赖同级 `openpi_old`。
 
-默认训练策略是 **ViT 冻结 1 epoch 后小学习率解冻，projector、VLM、动作专家与新动作头全程训练**。支持从第一步全参训练和冻结 ViT 对照。最多 8 epochs，每 epoch 验证、保存、按验证 ADE 选模型并早停。训练使用 BF16 autocast、FP32 参数和 AdamW 状态，支持单卡、多卡和多节点 DDP。
+默认训练策略是 **ViT 冻结 1 epoch 后小学习率解冻，projector、VLM、动作专家与新动作头全程训练**。支持从第一步全参训练和冻结 ViT 对照。默认完整训练 **20 epochs，关闭自动早停**，每 epoch 验证、保存并记录验证 ADE 最佳模型。训练使用 BF16 autocast、FP32 参数和 AdamW 状态，支持单卡、多卡和多节点 DDP。
 
 本次交付只准备代码、资产和 CPU 检查，没有启动真实训练、GPU benchmark 或官方 PDM 评测。80GB 最优 batch/速度需在目标空闲 GPU 上测量。
+
+SFT 实际优化的是 **flow-matching 速度预测 MSE**；ADE/FDE 用于验证，PDM 用于驾驶质量评估。推荐对候选 checkpoint 另做验证集 PDM 比较；当前 `best.json` 只代表验证 ADE 的选择结果。RecogDrive、AutoVLA 等的训练目标对比见 [SFT 目标与相关工作](docs/SFT目标与相关工作.md)。
 
 ## 模型与训练选择
 
@@ -85,7 +87,7 @@ NPROC_PER_NODE=8 bash scripts/train.sh \
 
 配置默认 micro batch 2、累积 4、逐层重计算，是待实测的保守起点；如果直接单卡用默认值，有效 batch 是 8。DDP 每卡复制完整模型与优化器，不合并多卡显存。
 
-默认最多 8 epochs，至少到第 4 epoch 才允许早停，验证 ADE 连续 3 次未改善超过 0.001m 时停止。`best.json` 指向选中的 checkpoint，`validation.jsonl` 记录验证曲线。细节与步数计算见 [80GB 训练方案](docs/80GB训练方案.md)。
+默认完整训练 20 epochs：第 1 epoch 冻结 ViT，后 19 epochs 解冻；`early_stop_patience=0` 禁用早停，`max_steps=null` 不设提前截断。`best.json` 记录验证 ADE 改善超过 0.001m 时的 checkpoint，`validation.jsonl` 记录验证曲线；保存早期最佳模型不会提前结束训练。需要更长预算可在启动前加 `--set train.epochs=30`。细节与步数计算见 [80GB 训练方案](docs/80GB训练方案.md)。
 
 ```bash
 # 精确续训：相同配置 / world size，目录替换为实际保存的 checkpoint
@@ -97,7 +99,7 @@ NPROC_PER_NODE=1 bash scripts/train.sh --warm-start runs/navsim_8gpu/step_000004
   --set train.grad_accum=32 --set train.output=runs/new_experiment
 ```
 
-每 epoch 保存完整模型、优化器、日程、归一化、tokenizer 和各 rank RNG；完整 checkpoint 预算约 38GiB，8 份建议预留 320GiB 以上。不自动删除旧检查点。
+每 epoch 保存完整模型、优化器、日程、归一化、tokenizer 和各 rank RNG；完整 checkpoint 预算约 38GiB，20 份约 760GiB，建议为训练检查点预留 800GiB 以上磁盘。不自动删除旧检查点。
 
 ## 80GB 显存与速度
 
